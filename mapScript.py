@@ -14,9 +14,9 @@ lon = list(Risk["LON"])
 ev = list(Risk["ELEV"])
 
 def color_producer(elevation):
-    if elevation < 100:
+    if elevation < 1000:
         return 'green'
-    elif 100 <= elevation < 300:
+    elif 1000 <= elevation < 3000:
         return 'orange'
     else:
         return 'red'
@@ -27,7 +27,7 @@ fgv = folium.FeatureGroup(name="RISK")
 
 for lt,ln,el in zip(lat,lon,ev):
     fgv.add_child(folium.CircleMarker(location=[lt,ln],radius=6,popup=str(el)+" m",
-        fill_color = color_producer(el), color='grey',fill_opacity=0.7))
+        fill_color = color_producer(el), color='red',fill_opacity=0.7))
 
 map.add_child(fgv)
 map.add_child(folium.LayerControl())
